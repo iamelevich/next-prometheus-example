@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "TS_NODE_PROJECT=tsconfig.server.json nodemon --exec node --inspect -r ts-node/register ./server/server.ts",
+    "build": "npm run build:server && npm run build:next",
+    "build:next": "next build",
+    "build:server": "tsc --project tsconfig.server.json",
+    "start": "node dist/server/server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -21,5 +23,9 @@
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
   }
 }
